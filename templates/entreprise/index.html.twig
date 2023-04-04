@@ -6,8 +6,9 @@
     <h1>liste des entreprise </h1>
 
     {% for entreprise in entreprises %}
-
-        {{ entreprise }} <br>
+            
+        {# pass an id  #}
+        <a href="{{ path('show_entreprise', {'id': entreprise.id}) }}">{{ entreprise }} </a><br> 
 
     {% endfor %}
 

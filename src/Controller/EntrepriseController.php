@@ -15,11 +15,24 @@ class EntrepriseController extends AbstractController
     {
 
         // gets all the company in db
-        $entreprises = $docrine->getRepository(Entreprise::class)->findAll();
+        $entreprises = $docrine->getRepository(Entreprise::class)->findBy([],["raisonSociale"=>"ASC"]);
 
         return $this->render('entreprise/index.html.twig', [
 
             'entreprises'=> $entreprises,
+        ]);
+    }
+
+
+    #[Route('/entreprise/{id}', name: 'show_entreprise')]
+    public function showEntreprise(ManagerRegistry $docrine): Response
+    {
+        
+        $entreprise = "";
+
+        return $this->render('entreprise/index.html.twig', [
+    
+            'entreprise'=> $entreprise,
         ]);
     }
 }

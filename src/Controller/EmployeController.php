@@ -13,12 +13,21 @@ class EmployeController extends AbstractController
     #[Route('/employe', name: 'app_employe')]
     public function index(ManagerRegistry $docrine): Response
     {
-        // gets all the company in db
-        $employes = $docrine->getRepository(Employe::class)->findAll();
+        // gets all the employe in db
+        $employes = $docrine->getRepository(Employe::class)->findBy([], ['nom' => "ASC"]);
 
         return $this->render('employe/index.html.twig', [
 
             'employes'=> $employes,
+        ]);
+    }
+
+    #[Route('/employe/{id}', name: 'show_employe')]
+    public function show(Employe $employe): Response
+    {
+
+        return $this->render('employe/show.html.twig', [
+            'employe'=> $employe,
         ]);
     }
 }
