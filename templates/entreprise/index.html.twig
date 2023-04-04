@@ -5,6 +5,8 @@
 {% block body %}
     <h1>liste des entreprise </h1>
 
+    <a class="btn btn-primary" href="{{ path('add_entreprise') }}">ajouter une entreprise</a> <br>
+
     {% for entreprise in entreprises %}
             
         {# pass an id  #}
