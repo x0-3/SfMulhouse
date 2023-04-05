@@ -25,9 +25,17 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    // can add more than one route
     #[Route('/entreprise/add', name: 'add_entreprise')]
+    #[Route('/entreprise/{id}/edit', name: 'edit_entreprise')]
     public function add(ManagerRegistry $docrine, Entreprise $entreprise = null, Request $request)
     {
+
+        // if the entreprise id doesn't exist then create it
+        if (!$entreprise) {
+            $entreprise = new Entreprise();
+        }
+        // else edit
 
         // create a form that refers to the builder in entrepriseType
         $form = $this->createForm(EntrepriseType::class, $entreprise);
@@ -51,7 +59,19 @@ class EntrepriseController extends AbstractController
         return $this->render('entreprise/add.html.twig', [
 
             'formAddEntreprise'=> $form->createView(),   
+            'edit'=> $entreprise->getId(),   
         ]);
+    }
+
+    #[Route('/entreprise/{id}/delete', name: 'delete_entreprise')]
+    public function delete(ManagerRegistry $docrine, Entreprise $entreprise):Response
+    {
+        $entityManager = $docrine->getManager();
+        $entityManager->remove($entreprise); //remove in object
+        $entityManager->flush(); // send the request to the db 
+
+        return $this->redirectToRoute('app_employe');
+
     }
 
 

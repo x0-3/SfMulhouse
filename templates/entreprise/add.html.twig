@@ -4,11 +4,17 @@
 
 {% block body %}
 
-    <h1>ajouter une entreprise</h1>
+    {% if edit %}
+        <h1>editer une entreprise</h1>
+
+        {% else %}
+        
+        <h1>ajouter une entreprise</h1>
+
+    {% endif %}
 
     {# show the form that is in the controller #}
     {{form(formAddEntreprise)}}
-
 
 
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ajouter un employe{% endblock %}
+
+{% block body %}
+
+    {% if edit %}
+        <h1>editer un employe</h1>
+
+        {% else %}
+
+            <h1>ajouter un employe</h1>
+
+    {% endif %}
+
+    {# show the form that is in the controller #}
+    
+    {{ form_start(formAddEmploye) }}
+    
+        <div class="nomPrenom">
+            {{form_row(formAddEmploye.nom)}}
+            {{form_row(formAddEmploye.prenom)}}
+
+        </div>
+
+        <div>
+
+            {{form_row(formAddEmploye.dateNaissance)}}
+            {{form_row(formAddEmploye.dateEmbauche)}}
+            {{form_row(formAddEmploye.ville)}}
+            {{form_row(formAddEmploye.entreprise)}}
+            {{form_row(formAddEmploye.submit)}}
+        </div>
+            
+    {{ form_end(formAddEmploye) }}
+
+    
+
+
+
+{% endblock %}
